@@ -1,4 +1,4 @@
- <%@ page import = "java.sql.Connection" %>
+<%@ page import = "java.sql.Connection" %>
     <%@ page import ="java.sql.DriverManager" %>
     <%@ page import ="java.sql.PreparedStatement" %>
     <%@ page import ="java.sql.ResultSet" %>
@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>회원 정보 변경</title>
 </head>
 <body>
 <%
@@ -19,22 +19,44 @@
     String PWD= "1234";                         // MySQL 비밀번호
     String PORTNO = "3306";                     // MySQL 포트 번호
     String DBNAME = "db01";                     // 연결할 MySQL DB 이름
-    // MySQL 8.0 버전 이상 연결 시 사용
  
     String Query = "jdbc:mysql://localhost:" + PORTNO + "/" + DBNAME + "?";                                             
- 
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection conn = DriverManager.getConnection(Query, ID, PWD);  
  
     if (conn != null) {
-        out.println("WebDB 데이터베이스로 연결했습니다. <br>");
-        conn.close();
-        out.println("WebDB 데이터베이스로의 연결을 끊었습니다.<br>");
     }
     else {
         out.println("WebDB 데이터베이스로 연결할 수 없습니다.<br>");
     }
-%>
-
+    try{
+    
+    String uid = request.getParameter("uid");
+    String changeId = request.getParameter("changeId");
+    String changePass = request.getParameter("changePass");
+    
+    out.println(uid);
+    out.println(changeId);
+    out.println(changePass);
+    
+    String sql = "UPDATE users SET uid = ?, pass = ? WHERE uid = ?";
+    
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+    
+    pstmt.setString(1, changeId);
+    pstmt.setString(2, changePass);
+    pstmt.setString(3, uid);
+	
+    pstmt.executeUpdate();
+    pstmt.close();
+    	
+    }catch(SQLException e){
+    	out.print(e);
+    }
+    
+	conn.close(); 
+	response.sendRedirect("list.jsp"); 
+	%>
+	
 </body>
 </html>
