@@ -67,8 +67,6 @@
 			}
 		%>
 	</table>
-
-
 </body>
 </html>
 
