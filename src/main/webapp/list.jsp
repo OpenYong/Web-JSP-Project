@@ -1,40 +1,91 @@
- <%@ page import = "java.sql.Connection" %>
-    <%@ page import ="java.sql.DriverManager" %>
-    <%@ page import ="java.sql.PreparedStatement" %>
-    <%@ page import ="java.sql.ResultSet" %>
-    <%@ page import ="java.sql.SQLException" %>
-    <%@ page import ="java.sql.Statement" %>
-    
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>ëª©ë¡</title>
 </head>
 <body>
-<%
-    String ID = "root";                         // MySQL ¾ÆÀÌµğ
-    String PWD= "dyddus29!";                         // MySQL ºñ¹Ğ¹øÈ£
-    String PORTNO = "3306";                     // MySQL Æ÷Æ® ¹øÈ£
-    String DBNAME = "db01";                     // ¿¬°áÇÒ MySQL DB ÀÌ¸§
-    // MySQL 8.0 ¹öÀü ÀÌ»ó ¿¬°á ½Ã »ç¿ë
- 
-    String Query = "jdbc:mysql://localhost:" + PORTNO + "/" + DBNAME + "?";                                             
- 
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection conn = DriverManager.getConnection(Query, ID, PWD);  
- 
-    if (conn != null) {
-        out.println("WebDB µ¥ÀÌÅÍº£ÀÌ½º·Î ¿¬°áÇß½À´Ï´Ù. <br>");
-        conn.close();
-        out.println("WebDB µ¥ÀÌÅÍº£ÀÌ½º·ÎÀÇ ¿¬°áÀ» ²÷¾ú½À´Ï´Ù.<br>");
-    }
-    else {
-        out.println("WebDB µ¥ÀÌÅÍº£ÀÌ½º·Î ¿¬°áÇÒ ¼ö ¾ø½À´Ï´Ù.<br>");
-    }
-%>
+	<h1>íšŒì› ëª©ë¡ í˜ì´ì§€</h1>
+	<table width="200" border="1">
+		<tr>
+			<td>ì•„ì´ë””</td>
+			<td>ë¹„ë°€ë²ˆí˜¸</td>
+			<td>ì‚­ì œ</td>
+			<td>ìˆ˜ì •</td>
+		</tr>
+		<%
+			Connection conn = null; 
+			PreparedStatement pstmt = null; 
+			ResultSet rs = null;
+			
+			try { 
+			
+            Class.forName("com.mysql.jdbc.Driver");
+
+            
+            String url = "jdbc:mysql://localhost/db01";
+            conn = DriverManager.getConnection(url, "root", "1234");
+			// ì—°ê²° ë
+			
+			String sql = "select * from users"; 
+			pstmt= conn.prepareStatement(sql);
+
+
+			out.println("ì—°ê²° ì„±ê³µ");
+			rs = pstmt.executeQuery(sql); 
+				while (rs.next()) { 
+					String uid = rs.getString("uid"); 
+					String pass = rs.getString("id");
+		%>		<tr>
+					<td><%=uid%></td>
+					<td><a href="delete.jsp?id=<%=uid %>">ì‚­ì œ</a></td>
+					<td><a href="update.jsp?id=<%=uid %>">ìˆ˜ì •</a></td>
+				</tr>
+		<%			
+				}
+			}catch(SQLException e){
+				e.printStackTrace();
+			}finally{
+				try{
+	                if( conn != null && !conn.isClosed()){
+	                    conn.close();
+	                }
+	                if( pstmt != null && !pstmt.isClosed()){
+	                    pstmt.close();
+	                }
+	                if( rs != null && !rs.isClosed()){
+	                    rs.close();
+	                }
+	            }
+	            catch( SQLException e){
+	                e.printStackTrace();
+	            }
+			}
+		%>
+	</table>
+
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
