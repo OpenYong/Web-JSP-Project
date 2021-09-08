@@ -4,23 +4,22 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<<<<<<< HEAD
-<title>È¸¿ø Á¤º¸ ¼öÁ¤</title>
+	
+<title>íšŒì› ì •ë³´ ìˆ˜ì •</title>
 </head>
 <body>	
 	<table>
-=======
-<title>È¸¿ø Á¤º¸ º¯°æ</title>
+
+<title>íšŒì› ì •ë³´ ë³€ê²½</title>
 </head>
 <body>
 	<table border="1" cellpadding ="5" align = center>
->>>>>>> 2f36dcacd8d23a6655bdd9d2391e5e8d7362c57f
 		<tr>
-			<td>¾ÆÀÌµð</td>
-			<td>ºñ¹Ð¹øÈ£</td>
+			<td>ì•„ì´ë””</td>
+			<td>ë¹„ë°€ë²ˆí˜¸</td>
 		</tr>
 		<tr>
-<<<<<<< HEAD
+
 			<td><%= request.getParameter("uid")%></td>
 			<td><%= request.getParameter("pass")%></td>
 		</tr>
@@ -30,13 +29,12 @@
 			<td><INPUT TYPE="hidden" NAME="uid" VALUE=<%= request.getParameter("uid")%>></td>
 		</tr>
 		<tr>
-			<td colspan = 2><input type="submit" value="¼öÁ¤"></td>
+			<td colspan = 2><input type="submit" value="ìˆ˜ì •"></td>
 			
 		</tr>
 		
 	</table>
 	
-=======
 			<td><%= request.getParameter("uid")--%></td>
 			<td><%= request.getParameter("pass")--%></td>
 		</tr>
@@ -46,11 +44,10 @@
 					<input type="hidden" name="uid" value=<%=uid%>>
 					<input type="text" name="changeId"> 
 					<input type="text" name="changePass"> 
-					<input type="submit" value="¼öÁ¤">
+					<input type="submit" value="ìˆ˜ì •">
 				</form>
 			</td>
 		</tr>
 	</table>
->>>>>>> 2f36dcacd8d23a6655bdd9d2391e5e8d7362c57f
 </body>
 </html>
