@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>회원 목록 페이지</h1>
-	<table width="200" border="1">
+	<table width="" border="1">
 		<tr>
 			<td>아이디</td>
 			<td>비밀번호</td>
@@ -28,22 +28,22 @@
 
             
             String url = "jdbc:mysql://localhost/db01";
-            conn = DriverManager.getConnection(url, "root", "1234");
+            conn = DriverManager.getConnection(url, "root", "dyddus29!");
 			// 연결 끝
 			
 			String sql = "select * from users"; 
 			pstmt= conn.prepareStatement(sql);
 
 
-			out.println("연결 성공");
 			rs = pstmt.executeQuery(sql); 
 				while (rs.next()) { 
 					String uid = rs.getString("uid"); 
-					String pass = rs.getString("id");
+					String pass = rs.getString("pass");
 		%>		<tr>
 					<td><%=uid%></td>
-					<td><a href="delete.jsp?id=<%=uid %>">삭제</a></td>
-					<td><a href="update.jsp?id=<%=uid %>">수정</a></td>
+					<td><%=pass%></td>
+					<td><a href="delete.jsp?uid=<%=uid %>&pass=<%= pass %>">삭제</a></td>
+					<td><a href="update.jsp?uid=<%=uid %>&pass=<%= pass %>">수정</a></td>
 				</tr>
 		<%			
 				}
@@ -67,8 +67,6 @@
 			}
 		%>
 	</table>
-
-
 </body>
 </html>
 

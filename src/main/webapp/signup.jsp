@@ -20,9 +20,9 @@
 	<fieldset >
 		<form  method = POST action = "signupinsert.jsp">
 			<label>아이디 : </label>
-			<input type="text" name="uid" placeholder = "아이디"><br>
+			<input type="text" name="uid" placeholder = "아이디" required><br>
 			<label>비밀번호 : </label>
-			<input type="text" name="pass" placeholder = "비밀번호">
+			<input type="text" name="pass" placeholder = "비밀번호" required>
 			<input type="submit" value="가입">
 		</form>
 	</fieldset>
