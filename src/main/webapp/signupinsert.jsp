@@ -1,13 +1,12 @@
-
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="java.sql.Statement"%>
-
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +26,7 @@
 	{
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/db01?useUnicode=true&characterEncoding=utf8"; // 아까 예제에서와 마찬가지로 url을 설정하죠
-		Connection con = DriverManager.getConnection(url, "root", "dyddus29!");
+		Connection con = DriverManager.getConnection(url, "root", "1234");
 		String sql = "INSERT INTO users(uid,pass) VALUES(?,?)"; // sql문 작성(id와 name, pwd값들을 보내기위한 작업)
 		PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -35,12 +34,9 @@
 		pstmt.setString(2,pass);
 
 		pstmt.executeUpdate(); // sql문 실행(회원추가 실행)
-
 		pstmt.close();
-
 		con.close();
 		response.sendRedirect("index.html"); 
-
 	}
 
 	catch(ClassNotFoundException e) // 예외처리
@@ -51,11 +47,6 @@
 	{
 		out.println(e);
 	}
-
-
 %>
-
-
-
 </body>
 </html>

@@ -1,12 +1,12 @@
-<%@ page import = "java.sql.Connection" %>
-    <%@ page import ="java.sql.DriverManager" %>
-    <%@ page import ="java.sql.PreparedStatement" %>
-    <%@ page import ="java.sql.ResultSet" %>
-    <%@ page import ="java.sql.SQLException" %>
-    <%@ page import ="java.sql.Statement" %>
-    
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.DriverManager"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.SQLException"%>
+<%@ page import="java.sql.Statement"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +16,7 @@
 <body>
 	<%
 	String ID = "root";                         // MySQL 아이디
-	    String PWD= "dyddus29!";                         // MySQL 비밀번호
+	    String PWD= "1234";                         // MySQL 비밀번호
 	    String PORTNO = "3306";                     // MySQL 포트 번호
 	    String DBNAME = "db01";                     // 연결할 MySQL DB 이름
 	    String Query = "jdbc:mysql://localhost:" + PORTNO + "/" + DBNAME + "?";
@@ -42,13 +42,11 @@
 
 			pstmt.executeUpdate();
 			pstmt.close();
-
 		} catch (SQLException e) {
 			out.print(e);
 		}
 		conn.close();
 		response.sendRedirect("list.jsp");
 	%>
-
 </body>
 </html>

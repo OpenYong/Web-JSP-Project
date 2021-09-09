@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>회원 목록 페이지</h1>
-	<table width="" border="1">
+	<table border="1">
 		<tr>
 			<td>아이디</td>
 			<td>비밀번호</td>
@@ -23,17 +23,13 @@
 			ResultSet rs = null;
 			
 			try { 
-			
             Class.forName("com.mysql.jdbc.Driver");
-
-            
             String url = "jdbc:mysql://localhost/db01";
-            conn = DriverManager.getConnection(url, "root", "dyddus29!");
+            conn = DriverManager.getConnection(url, "root", "1234");
 			// 연결 끝
 			
 			String sql = "select * from users"; 
 			pstmt= conn.prepareStatement(sql);
-
 
 			rs = pstmt.executeQuery(sql); 
 				while (rs.next()) { 
@@ -69,21 +65,3 @@
 	</table>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
